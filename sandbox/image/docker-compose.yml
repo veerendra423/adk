@@ -1,0 +1,34 @@
+version: '3.2'
+services:
+    algorithm:
+        image: ${SBOX_IMAGE_UNENC_LOCALNAME}
+        shm_size: '2gb'
+        environment:
+         - SCONE_MODE=sim
+         - SCONE_HEAP=3G
+         - SCONE_FORK=1
+         - SCONE_SYSLIBS=1
+         - SCONE_LOG=0
+         - SCONE_ALLOW_DLOPEN=2
+         - SCONE_FORK_OS=1
+         - SCONE_IGNORE_SIGHUP=1
+         - SCONE_FSPF_KEY=${FSPF_KEY}
+         - SCONE_FSPF_TAG=${FSPF_TAG}
+         - SCONE_FSPF=/fspf.pb
+        volumes:
+         - ./volumes/algorithm-output/:/algorithm-output
+         - ./volumes/algorithm-input:/algorithm-input
+        command: /root/miniconda/bin/python3 /app/nference_algorithm.py --data-dir /algorithm-input --output /algorithm-output
+    SensCli:
+        image: sensoriant.azurecr.io/nference/scli:${SBOX_PRODUCT_VERSION}
+        #image: sensoriant.azurecr.io/dev/scli:latest
+        network_mode: "host"
+        privileged: true
+        environment:
+            - SCLI_SBOX=sbox
+            - GOOGLE_APPLICATION_CREDENTIALS=/algo/${GCS_CREDS_FILE_NAME}
+        command: bash -c "./start.sh"
+        volumes:
+            - ${SBOX_ALGO_DIR}:/algo
+            - /tmp:/tmp
+            - /run:/run

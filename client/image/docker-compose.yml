@@ -1,0 +1,79 @@
+version: '3.2'
+services:
+    algorithm:
+        build:
+            context: ./algorithm
+        image: ${SCLI_REGISTRY}/${SCLI_REPO}/${SCLI_IMAGE}:${SCLI_TAG}_${CURRENT_BUILD_SCLI}
+        shm_size: '2gb'
+        environment:
+         - SCONE_MODE=sim
+         - SCONE_HEAP=3G
+         - SCONE_FORK=1
+         - SCONE_SYSLIBS=1
+         - SCONE_LOG=0
+         - SCONE_ALLOW_DLOPEN=2
+         - SCONE_FORK_OS=1
+         - SCONE_IGNORE_SIGHUP=1
+         - SCONE_FSPF_KEY=${FSPF_KEY}
+         - SCONE_FSPF_TAG=${FSPF_TAG}
+         - SCONE_FSPF=/fspf.pb
+        volumes:
+         - ./volumes/algorithm-output/:/algorithm-output
+         - ./volumes/algorithm-input:/algorithm-input
+        command: /root/miniconda/bin/python3 /app/nference_algorithm.py --data-dir /algorithm-input --output /algorithm-output
+    SensDecrypt:
+        image: sensoriant.azurecr.io/nference/sensdecrypt:${SCLI_PRODUCT_VERSION}
+        environment:
+         - SCONE_MODE=sim
+         - SCONE_SYSLIBS=1
+         - SCONE_LOG=0
+         - SCONE_ALLOW_DLOPEN=2
+        command: /copyfiles -i /decrypt-input -o /decrypt-output -k $SENSDECRYPT_FSPF_KEY
+        volumes:
+         - ./volumes/decrypt-input:/decrypt-input
+         - ./volumes/decrypt-output:/decrypt-output
+    SensGcsPull:
+        image: sensoriant.azurecr.io/nference/sensgcspull:${SCLI_PRODUCT_VERSION}
+        environment:
+            - GCS_BUCKET_NAME=${GCS_DATA_STORAGE_BUCKET}
+            - GCS_OUTPUT_PATH=/opt/sensoriant/gcs/pull/filesFromBucket
+            - GCS_OBJECT_PREFIX
+            - GOBIN
+            - GOOGLE_APPLICATION_CREDENTIALS=/opt/sensoriant/gcs/pull/credentials/gcscreds.json
+            - MODE
+        command: bash -c "/opt/sensoriant/gcs/pull/start.sh"
+        volumes:
+            - ${SCLI_ALGO_DIR}:/opt/sensoriant/gcs/pull/credentials
+            - ./volumes/datasets:/opt/sensoriant/gcs/pull/datasets
+    SensEncrypt:
+        image: sensoriant.azurecr.io/nference/sensencrypt:${SCLI_PRODUCT_VERSION}
+        environment:
+         - SCONE_MODE=sim
+         - SCONE_SYSLIBS=1
+         - SCONE_LOG=0
+         - SCONE_ALLOW_DLOPEN=2
+        command: /copyfiles -i /encrypt-input/ -o /encrypt-output -k $SENSENCRYPT_FSPF_KEY
+        volumes:
+         - ./volumes/encrypt-input:/encrypt-input
+         - ./volumes/encrypt-output:/encrypt-output
+    SensGcsPush:
+        image: sensoriant.azurecr.io/nference/sensgcspush:${SCLI_PRODUCT_VERSION}
+        environment:
+            - GCS_BUCKET_NAME=${GCS_DATA_STORAGE_BUCKET}
+            - GCS_INPUT_PATH=/opt/sensoriant/gcs/push/filesToBucket
+            - GCS_OBJECT_PREFIX
+            - GOBIN
+            - GOOGLE_APPLICATION_CREDENTIALS=/opt/sensoriant/gcs/push/credentials/gcscreds.json
+            - MODE
+        command: bash -c "/opt/sensoriant/gcs/push/start.sh"
+        volumes:
+            - ${SCLI_ALGO_DIR}:/opt/sensoriant/gcs/push/credentials
+            - ./volumes/datasets:/opt/sensoriant/gcs/push/datasets
+    SensCli:
+        image: sensoriant.azurecr.io/nference/scli:${SCLI_PRODUCT_VERSION}
+        network_mode: "host"
+        environment:
+            - GOOGLE_APPLICATION_CREDENTIALS=/algo/${GCS_CREDS_FILE_NAME}
+        command: bash -c "./start.sh"
+        volumes:
+            - ${SCLI_ALGO_DIR}:/algo

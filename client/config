@@ -1,0 +1,54 @@
+# Change the following as needed; change sample to your directory name
+export SCLI_STANDALONE=false
+#export SCLI_API_SERVER=40.76.33.226
+export SCLI_API_SERVER=13.90.89.5
+export ROOT_SCLI=$HOME/adk/client
+export SCLI_REPO=sensetest
+export SCLI_IMAGE=testimagev1
+export SCLI_TAG=testv1
+export BASE_BUILD_SCLI=`date -d "Jan 09 2021" +%s`
+
+    # the following file for Google storage access must be placed in $SCLI_ALGO_DIR (see below for path)
+export GCS_CREDS_FILE_NAME=gcscreds.json
+export GCS_ALGO_STORAGE_BUCKET=sensoriant-dev-storage
+export GCS_DATA_STORAGE_BUCKET=sensoriant-dev-storage
+#export GCS_ALGO_STORAGE_BUCKET=sensoriant-nferx-dev-storage
+#export GCS_DATA_STORAGE_BUCKET=sensoriant-nferx-dev-storage
+
+
+# Change the following only if you are using a different central registry; username:password required
+#export SCLI_SENSE_REG=sensoriant.azurecr.io
+#export SCLI_SENSE_REG_USER=bb3fd7f0-72e4-4d76-ace4-b17582cc1993:50b77c07-fc54-4c93-bd5b-e1d5aa5e26d1
+export SCLI_SENSE_REG=nferalgos.azurecr.io
+export SCLI_SENSE_REG_USER=8e5a855e-b103-4dee-81a5-41fc1dd429dc:C6E~1VJNYp7ON27ZKjOv5qceCP~nZ-kvyO
+#export SCLI_SENSE_REG=docker-registry.nferx.com
+#export SCLI_SENSE_REG_USER=sensoriant:sensoriant_4321
+
+# Change the following as needed for reference image related aspects
+export SCLI_USE_REF=true
+export SCLI_REF_ALGO_IMAGE=sensoriant.azurecr.io/priv-comp/sensrefimage:11302020
+export SCLI_REF_ALGO_CREDS=bb3fd7f0-72e4-4d76-ace4-b17582cc1993:50b77c07-fc54-4c93-bd5b-e1d5aa5e26d1
+
+# DO NOT CHANGE
+export SCLI_ROOT=$ROOT_SCLI
+export SCLI_REGISTRY=localhost:5000
+export SCLI_ALGO_DIR=$SCLI_ROOT/image/sdata
+
+export SCLI_REF_ALGO_TAR=$SCLI_ALGO_DIR/ref.tar
+
+export GCS_CREDS_FILE=$SCLI_ALGO_DIR/$GCS_CREDS_FILE_NAME
+
+export SCLI_ALGO_DATA=$SCLI_ROOT/image/volumes
+export SCLI_MEAS_FILE=$SCLI_ALGO_DIR/$CURRENT_BUILD_SCLI/$SCLI_IMAGE-${SCLI_TAG}_$CURRENT_BUILD_SCLI-enc-meas.txt
+export SCLI_IPK_FILE=$SCLI_ALGO_DIR/$CURRENT_BUILD_SCLI/$SCLI_IMAGE-${SCLI_TAG}_$CURRENT_BUILD_SCLI-enc-priv.pem
+export SCLI_EPK_FILE=$SCLI_IPK_FILE-ek
+export SCLI_IMAGE_TAR=$( echo $SCLI_REPO+$SCLI_IMAGE-${SCLI_TAG}_$CURRENT_BUILD_SCLI-enc.tar | sed -e "s/\//+/g" )
+export SCLI_IMAGE_TAR_FILE=$SCLI_ALGO_DIR/$CURRENT_BUILD_SCLI/$SCLI_IMAGE_TAR
+
+export SCLI_SIGNING_KEY=$SCLI_ALGO_DIR/pharma-priv.pem
+export SCLI_MACHINE_KEY=$SCLI_ALGO_DIR/machine-pub.pem
+export SCLI_DEFAULT_MACHINE_KEY=$SCLI_ALGO_DIR/default-machine-pub.pem
+export SCLI_OUTPUT_KEY=$SCLI_ALGO_DIR/pharma-pub.pem
+export SCLI_OUTPUT_PRIV_KEY=$SCLI_ALGO_DIR/pharma-priv.pem
+export SCLI_DOMAIN=pharma
+export SCLI_PRODUCT_VERSION=VERSION_1_1_0

@@ -1,0 +1,13 @@
+ARG algo_base
+#FROM sensoriant.azurecr.io/priv-comp/python-3.8.1-ubuntu:11302020
+FROM ${algo_base}
+ADD /app/requirements.txt /requirements.txt
+
+RUN /root/miniconda/bin/pip install --no-cache-dir -r /requirements.txt && \
+    rm /requirements.txt && \
+    # remove all python cache files to ensure consistent fs state
+    find /usr/lib -name "*.pyc" -type f -delete
+
+WORKDIR /
+
+#ENTRYPOINT ["/bin/sh"]

@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "lyrical-gantry-279014",
+  "private_key_id": "6d98c7170e9557049be5ec4afc43622af64e3307",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCzu1HGGBGSTXYn\n//dOwWgv/NnjEnouTZ3XJn/IzE2Qm4TKqu9o/LLlQQ4g3i6jgl4A9ojk97pAShRZ\nprVqgPJZRHZdZ/GIK9o79HlJoDrQRr/MEVYCZPqxKrdOSWHoG8IBWJAAx8SW7oTF\nHiHxz+kNB2Kxm/FxiN/FntsnDaHx9QYdBOutgH6SpQxsmT7nBJPgc1xCOlC7cisD\nV1y6z/1+Zi8/pJ3sPMPFAvF3j9p3FcoLhjoRidHQ7kVVQj282bXA5vgh4bGivLmx\nR1rynBj0SqU46/5T8av7sKCgALAWUmHxR91Gz9gimpuWAb3Rr66DYsOVKQbx/N2O\n4Q8vuZ47AgMBAAECggEACOzf8jTmxnunRvQ8nUIYgO2PCmoz/BGpqXIFfXy7y1cV\nwJS9f9qwrZbN807lRQRn06dqg+hTbPbgzNTtBGVz43/1Ws0bHvaCh2CsFz5oPUiO\nJL2lpkfKdTrYUIBvZr3eI//4YrmI5y/gEwPcjqwS+C0qNwS1+DviVOd/HZDdPm0l\nsoqcla8n82/DOk3T0bFBo/AechWBhJxlxi8KhFZuKJbD6diXD+LFNcXWDBR6GCBb\nWpkpmIbogUIzTjKDaIY6dX7tDb5NMyogF+yipXc7ujKP7yA6H1xF2Fo4rFdgjr3v\nKCqUdVEZfAM8jqNk/ijPGXeU0ytwMs16wUlPei9ZhQKBgQDi6xbPlaPM49LgexbP\nn8rQmCjnk19zehsT5MVj9YjtBWb1StWZwKrjntqYNKuAcdXLKZYizGo0o71k1FON\nVCmfuxWFK5ISJcsS4ws5WDbRMhpC9jtLy61nOOAhhnE5N3Y23EKjjOKBy/OZwMaF\n1L4jonE3OfsxeaejS3sMJkJmPQKBgQDKxBiTjhHRiHUQckWo70cHvavEi+7+SItU\nbcGfxqiGV/cz7hU6VGhf7elvQOJfFgIrkK4ylu4OMsJ44HC0z5qnA/B6BzwAcIeE\nveUWixsMknVv7r864hDO/yREiEVVvsRru6THNHmu0pB3KiYgnygcxZhJANEkn2nA\n3pcTPcnV1wKBgEiaoZTPszY2Wt2aZKUP4ou1c7kMrUi8c/d8hi/CewojZVrsk8V7\nIPJtfFGg4JLbWWWEq9X8g6rODSY6zXT1zc+ew3b1huopj30+ifPSJs/ucPql4DkT\nNStGxmfTpVyCQ1+wP94mkL6o7Atw49QkSqYKLqFV+upMm3ejCf7MKwidAoGAUhTj\n5gejCvF0gj3gGS0T0fxkJmKHUwTG8lyj/ywKWKgPeEQu77fvsLW8w76+ZMOiCUS+\nX9hdcf32X7xro6ZO8sFTffKjxYHIOmIs9N1HC+XWCIPbgdi1+TWr1tpbRwS8uufx\nInsJr02qEbNMT/Rd5pfOt+7Ou0aVJvB0s+NVa20CgYA4nAYlUd4fWxFBfU09a7kC\nr1wAp4KWiz96IXMaXfgEcdLViOcCBNxnfWTnghLrRmXMKY2idVYdqs8yg4jv5pFA\nDbqTbub2VtpEauJ9ecpue5zqnYed4KFr7KDItSWc2XqofArhV5ErVdW9wXq//o+5\nwEkNmNtRX/9IavdJmdkLOQ==\n-----END PRIVATE KEY-----\n",
+  "client_email": "gcs-data-bucket@lyrical-gantry-279014.iam.gserviceaccount.com",
+  "client_id": "101924362619430491739",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/gcs-data-bucket%40lyrical-gantry-279014.iam.gserviceaccount.com"
+}

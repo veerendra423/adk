@@ -1,0 +1,6 @@
+torch==1.5.1
+sklearn
+pandas==1.0.5
+torchaudio==0.5.1
+torchvision==0.6.1
+pyarrow==0.17.1
